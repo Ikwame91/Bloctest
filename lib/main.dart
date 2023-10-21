@@ -20,6 +20,7 @@ class _MyAppState extends State<MyApp> {
     return BlocProvider<CounterCubit>(
       create: (context) => CounterCubit(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -56,67 +57,65 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: BlocListener<CounterCubit, CounterState>(
-        listener: (context, state) {
-          if (state.wasIncremented == true) {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text('INCREMENTED'),
-              duration: Duration(milliseconds: 300),
-            ));
-          }
-        },
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'You have pushed the button this many times:',
-              ),
-              BlocBuilder<CounterCubit, CounterState>(
-                builder: (context, state) {
-                  if (state.counterValue < 0) {
-                    return Text(
-                      'WTF NEGATIVE  ${state.counterValue}',
-                      style: Theme.of(context).textTheme.headlineMedium,
-                    );
-                  } else if (state.counterValue % 5 == 0) {
-                    return Text(
-                      'WOOOOW    ${state.counterValue}',
-                      style: Theme.of(context).textTheme.headlineMedium,
-                    );
-                  } else if (state.counterValue == 5) {
-                    return Text(
-                      state.counterValue.toString(),
-                      style: Theme.of(context).textTheme.headlineMedium,
-                    );
-                  }
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'You have pushed the button this many times:',
+            ),
+            BlocConsumer<CounterCubit, CounterState>(
+              listener: (context, state) {
+                if (state.wasIncremented == true) {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text('INCREMENTED'),
+                    duration: Duration(milliseconds: 300),
+                  ));
+                }
+              },
+              builder: (context, state) {
+                if (state.counterValue < 0) {
+                  return Text(
+                    'WTF NEGATIVE  ${state.counterValue}',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  );
+                } else if (state.counterValue % 5 == 0) {
+                  return Text(
+                    'WOOOOW    ${state.counterValue}',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  );
+                } else if (state.counterValue == 5) {
                   return Text(
                     state.counterValue.toString(),
                     style: Theme.of(context).textTheme.headlineMedium,
                   );
-                },
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  FloatingActionButton(
-                    onPressed: () {
-                      BlocProvider.of<CounterCubit>(context).decerement();
-                    },
-                    tooltip: 'Decrement',
-                    child: const Icon(Icons.remove),
-                  ),
-                  FloatingActionButton(
-                    onPressed: () {
-                      BlocProvider.of<CounterCubit>(context).increment();
-                    },
-                    tooltip: 'Increment',
-                    child: const Icon(Icons.add),
-                  ),
-                ],
-              )
-            ],
-          ),
+                }
+                return Text(
+                  state.counterValue.toString(),
+                  style: Theme.of(context).textTheme.headlineMedium,
+                );
+              },
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                FloatingActionButton(
+                  onPressed: () {
+                    BlocProvider.of<CounterCubit>(context).decerement();
+                  },
+                  tooltip: 'Decrement',
+                  child: const Icon(Icons.remove),
+                ),
+                FloatingActionButton(
+                  onPressed: () {
+                    BlocProvider.of<CounterCubit>(context).increment();
+                  },
+                  tooltip: 'Increment',
+                  child: const Icon(Icons.add),
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );
