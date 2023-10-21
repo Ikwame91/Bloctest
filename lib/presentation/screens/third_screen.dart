@@ -2,24 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/logic/cubit/counter_cubit_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key, required this.title, required this.color});
+class ThirdScreen extends StatefulWidget {
+  const ThirdScreen({super.key, required this.title, required this.color});
 
   final String title;
   final Color color;
   @override
-  State<HomeScreen> createState() => _MyHomePageState();
+  State<ThirdScreen> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<HomeScreen> {
-  // int _counter = 0;
-
-  // void _incrementCounter() {
-  //   setState(() {
-  //     _counter++;
-  //   });
-  // }
-
+class _MyHomePageState extends State<ThirdScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +38,7 @@ class _MyHomePageState extends State<HomeScreen> {
                 } else if (state.wasIncremented == false) {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text('Decremented'),
-                    duration: Duration(milliseconds: 900),
+                    duration: Duration(milliseconds: 300),
                   ));
                 }
               },
@@ -97,23 +89,6 @@ class _MyHomePageState extends State<HomeScreen> {
             const SizedBox(
               height: 24,
             ),
-            MaterialButton(
-              color: widget.color,
-              onPressed: () {
-                Navigator.of(context).pushNamed('/second');
-              },
-              child: const Text('Go to Second Screen'),
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            MaterialButton(
-              color: widget.color,
-              onPressed: () {
-                Navigator.of(context).pushNamed('/third');
-              },
-              child: const Text('Go to Third Screen'),
-            )
           ],
         ),
       ),
