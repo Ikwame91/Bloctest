@@ -46,7 +46,7 @@ class _MyHomePageState extends State<HomeScreen> {
                 } else if (state.wasIncremented == false) {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text('Decremented'),
-                    duration: Duration(milliseconds: 900),
+                    duration: Duration(milliseconds: 300),
                   ));
                 }
               },
