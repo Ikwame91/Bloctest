@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/logic/cubit/counter_cubit_cubit.dart';
-import 'package:flutter_application_1/presentation/screens/second_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key, required this.title, required this.color});
+class SecondScreen extends StatefulWidget {
+  const SecondScreen({super.key, required this.title, required this.color});
 
   final String title;
   final Color color;
   @override
-  State<HomeScreen> createState() => _MyHomePageState();
+  State<SecondScreen> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<HomeScreen> {
+class _MyHomePageState extends State<SecondScreen> {
   // int _counter = 0;
 
   // void _incrementCounter() {
@@ -100,17 +99,7 @@ class _MyHomePageState extends State<HomeScreen> {
             ),
             MaterialButton(
               color: widget.color,
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => BlocProvider.value(
-                      value: BlocProvider.of<CounterCubit>(context),
-                      child: const SecondScreen(
-                          title: 'Second Screem', color: Colors.red),
-                    ),
-                  ),
-                );
-              },
+              onPressed: () {},
               child: const Text('Go to Second Screen'),
             )
           ],
