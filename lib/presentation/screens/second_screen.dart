@@ -79,7 +79,7 @@ class _MyHomePageState extends State<SecondScreen> {
                 FloatingActionButton(
                   heroTag: Text('${widget.title}'),
                   onPressed: () {
-                    BlocProvider.of<CounterCubit>(context).decerement();
+                    BlocProvider.of<CounterCubit>(context).decrement();
                   },
                   tooltip: 'Decrement',
                   child: const Icon(Icons.remove),
